@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pin Chhunheang</title>
+        <style>
+            .t1{
+                  margin-top: 25px;
+                  margin-right: 16px;
+                }
+            .t2{
+                    margin-top: 20px;
+                    width: 350px;
+                    padding: 20px;
+                    border-color: rgb(92, 92, 97);
+                    margin: auto;
+                    
+                }
+        </style>
+
+    </head>
+    <body>
+        <div class="t2" style="margin-top: 20px;">
+            <form form name="form" action="javascript:validate();">
+              <fieldset style="box-shadow: 10px 10px 0px 6px #EDEDEB;">
+              <legend align="center"><p>Equation of second Degree</p></legend>  
+                <h1 style="margin: 35px;">  ax<sup>2</sup> + bx + c = 0 </h1>
+                <table style="margin-left: 50px;">
+                    <tr align="center">
+                      <td><h2>a</h2></td>
+                      <td> <input type="number" name="a" style="margin-left: 30px;"></td>
+                    </tr> 
+                  
+                    <tr align="center">
+                        <td><h2>b</h2></td>
+                        <td style="margin-left: 10px;"> <input type="number" name="b" style="margin-left: 30px;"></td>
+                    </tr>  
+
+                    <tr align="center">
+                        <td><h2>c</h2></td>
+                        <td> <input type="number" name="c" style="margin-left: 30px;"></td>
+                    </tr> 
+                    
+                    <tr align="center">
+                        <td></td>                       
+                        <td align="center" style="margin-left: 10px "> <input type="submit" value="Calculate"></td>
+                    </tr>           
+                </table>
+                <p id="output_text1" style="margin: 35px;">Answer:</p>
+                <p id="output_text2" style="margin: 35px;">X1 <br> X2</p>
+
+            </form>
+          </fieldset>
+          </div>
+
+          <script>
+              var a, b, c;
+              var x1, x2;
+              var real, imag;
+              var output1, output2;
+              var delta_r;
+              function validate() {
+        
+                // get the input
+                a = document.forms["form"]["a"].value;
+                b = document.forms["form"]["b"].value;
+                c = document.forms["form"]["c"].value;
+
+                    delta_r = (Math.pow(b, 2))-(4 * a * c);
+                  
+                    if(delta_r > 0){
+                        x1=(-b + Math.sqrt(delta_r)) / 2 * a ;
+                        x1=(-b - Math.sqrt(delta_r)) / 2 * a ;
+                        output1 = "<strong>" + (a == 1 ? "" : a) + "x<sup>2</sup> + " + (b == 1 ? "" : b) + "x + " + c + " = 0</strong>";
+                        output2 = "The roots of equation are complex: <br> X<sub>1</sub> = " + x1 + "<br> X<sub>2</sub> = "+ x2;
+
+                    }
+                    else if(delta_r == 0){
+                        x1 = (-b + Math.sqrt(delta_r)) / (2 * a) ;
+                        x2 = (-b + Math.sqrt(delta_r)) / (2 * a) ;
+                        output1 = "<strong>" + (a == 1 ? "" : a) + "x<sup>2</sup> + " + (b == 1 ? "" : b) + "x + " + c + " = 0</strong>";
+                        output2 = "The roots of equation are complex: <br> X<sub>1</sub> = " + x1 + "<br> X<sub>2</sub> = "+ x2;
+                    }
+
+                    else{
+                        real = -b / (2 * a);
+                        imag = Math.sqrt(-delta_r) / (2 * a);
+                        x1 = real+" + " + imag +"i";
+                        x2 = real+" - " + imag +"i";
+                        output1 = "<strong>" + (a == 1 ? "" : a) + "x<sup>2</sup> + " + (b == 1 ? "" : b) + "x + " + c + " = 0</strong>";
+                        output2 = "The roots of equation are complex: <br> X<sub>1</sub> = " + x1 + "<br> X<sub>2</sub> = "+ x2;
+
+                    }
+                document.getElementById("output_text1").innerHTML = output1;
+                document.getElementById("output_text2").innerHTML = output2;
+
+            }
+       </script>
+    </body>
+</html>
